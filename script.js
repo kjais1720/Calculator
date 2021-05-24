@@ -1,8 +1,11 @@
+const body = document.querySelector("body")
 const keys = document.querySelectorAll('.key')
 const numKeys = document.querySelectorAll('.num')
 const display = document.querySelector('.display')
 const calculator = document.querySelector(".calculator")
 const operatorKeys = document.querySelectorAll(".operator")
+const themeToggle = document.querySelector(".themes .button")
+const buttonWidth = document.querySelector(".button").offsetWidth
 const secondDisplay = document.querySelector(".secondary-display")
 
 var operators =[]
@@ -15,8 +18,44 @@ console.log('operators '+operators )
 // Playing click sound
 keys.forEach( key => {key.addEventListener("click",()=>{
     document.querySelector("audio").play()
-    })
+})
 }) 
+
+
+if (localStorage.getItem('prefersTheme') === null){ setPreferredTheme()}
+
+document.addEventListener('keydown',(event)=>{
+    if (event.key === 'Shift'){
+        localStorage.removeItem('prefersTheme')
+        setPreferredTheme()
+    }
+})
+
+function setPreferredTheme(){
+    var preferredTheme = prompt("Enter your preferred theme, to reset your preferred theme, press 'shift'.")
+    while(!['1','2','3'].includes(preferredTheme)){
+        alert('Invalid choice, choose only between 1 to 3')
+        preferredTheme = prompt('Enter your preferred theme')
+    }
+    localStorage.setItem('prefersTheme',String(preferredTheme))
+    changeTheme(localStorage.getItem('prefersTheme'))
+}
+
+changeTheme(localStorage.getItem('prefersTheme'))
+
+function changeTheme(themeCounter){
+    currentTheme = body.className.slice(-6,)
+    theme = 'theme'+themeCounter
+    calculator.classList.remove(currentTheme)
+    calculator.classList.add(theme)
+    body.classList.remove(currentTheme)
+    body.classList.add(theme)
+
+    var toggleShift = buttonWidth*0.05
+    toggleShift += (themeCounter-1)*(buttonWidth/3.2)
+    console.log("toggle : "+toggleShift)
+    document.querySelector(".themes .button .toggle").style.left=toggleShift+'px' 
+}
 
 
 // Theme toggle
@@ -26,10 +65,6 @@ var currentTheme = ''
 var clickPosition = 0
 var clickPositionPercent = 0
 var noOfThemes = parseInt(calculator.getAttribute("data-themes"))
-
-const body = document.querySelector("body")
-const themeToggle = document.querySelector(".themes .button")
-const buttonWidth = document.querySelector(".button").offsetWidth
 
 
 themeToggle.addEventListener("click", (event)=>{
@@ -44,18 +79,7 @@ themeToggle.addEventListener("click", (event)=>{
         themeCounter = 3
     }
 
-    currentTheme = body.className.slice(-6,)
-    theme = 'theme'+themeCounter
-    calculator.classList.remove(currentTheme)
-    calculator.classList.add(theme)
-    body.classList.remove(currentTheme)
-    body.classList.add(theme)
-
-    // Moving togggle button
-    var toggleShift = buttonWidth*0.1
-    toggleShift += (themeCounter-1)*(buttonWidth/3.2)
-    console.log("toggle : "+toggleShift)
-    document.querySelector(".themes .button .toggle").style.left=toggleShift+'px' 
+    changeTheme(themeCounter)
 })
 
 
