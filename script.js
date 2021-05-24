@@ -1,16 +1,16 @@
-const body = document.querySelector("body")
-const keys = document.querySelectorAll('.key')
-const numKeys = document.querySelectorAll('.num')
-const display = document.querySelector('.display')
-const calculator = document.querySelector(".calculator")
-const operatorKeys = document.querySelectorAll(".operator")
-const themeToggle = document.querySelector(".themes .button")
-const buttonWidth = document.querySelector(".button").offsetWidth
-const secondDisplay = document.querySelector(".secondary-display")
+const body = document.querySelector("body") //body element
+const keys = document.querySelectorAll('.key') // All the keys on the calculator
+const numKeys = document.querySelectorAll('.num') // All the number keys (including '.')
+const display = document.querySelector('.display') //The display screen
+const calculator = document.querySelector(".calculator") //Whole calculator
+const operatorKeys = document.querySelectorAll(".operator") // nodeList of All the operator keys
+const themeToggle = document.querySelector(".themes .button") // Theme toggle switch
+const buttonWidth = document.querySelector(".button").offsetWidth // Width of Theme toggle switch
+const secondDisplay = document.querySelector(".secondary-display") // Secondary display showing the record of the calculations.
 
-var operators =[]
 
 //making array of all the operatorss in calculator
+var operators =[]
 operatorKeys.forEach(operator => operators.push(operator.innerHTML))
 console.log('operators '+operators )
 
@@ -21,28 +21,69 @@ keys.forEach( key => {key.addEventListener("click",()=>{
 })
 }) 
 
+//Setting user's preferred theme. If the user opens the website again in future, the preferred theme will be automatically applied. 
 
-if (localStorage.getItem('prefersTheme') === null){ setPreferredTheme()}
+// It the user has opened the website for the first time, ask for user's preferred theme
+if (localStorage.getItem('prefersTheme') === null){ 
+    var counter = 0
+
+    //Show the user, a preview of all the themes before prompting them for an input
+    const themePreviews = setInterval(()=>{ 
+        counter++
+        if(counter === 4){
+            counter = 3
+            stopInterval(themePreviews)
+        } else {
+            changeTheme(counter)
+        }
+    },3000)
+}
+
+
+// If the user wants to change their preferred theme  
 
 document.addEventListener('keydown',(event)=>{
     if (event.key === 'Shift'){
         localStorage.removeItem('prefersTheme')
-        setPreferredTheme()
+        alert("Select preferred theme from the following three")
+        var counter = 0
+        const themePreviews = setInterval(()=>{ 
+            counter++
+            if(counter === 4){
+                counter = 3
+                stopInterval(themePreviews)
+            } else {
+                changeTheme(counter)
+            }
+        },3000)
     }
 })
 
+
+// Storing user's preferred theme in a variable on the local storage of the browser.
 function setPreferredTheme(){
     var preferredTheme = prompt("Enter your preferred theme, to reset your preferred theme, press 'shift'.")
     while(!['1','2','3'].includes(preferredTheme)){
-        alert('Invalid choice, choose only between 1 to 3')
-        preferredTheme = prompt('Enter your preferred theme')
-    }
+            alert('Invalid choice, choose only between 1 to 3')
+            preferredTheme = prompt('Enter your preferred theme')
+        }
     localStorage.setItem('prefersTheme',String(preferredTheme))
     changeTheme(localStorage.getItem('prefersTheme'))
 }
 
+
+// To stop the Theme preview
+function stopInterval(interval){
+    clearInterval(interval)
+    setPreferredTheme()
+}
+
+
+//Changing the theme to the preferred theme
 changeTheme(localStorage.getItem('prefersTheme'))
 
+
+// To change the theme. Arguement is the theme number.
 function changeTheme(themeCounter){
     currentTheme = body.className.slice(-6,)
     theme = 'theme'+themeCounter
@@ -58,7 +99,7 @@ function changeTheme(themeCounter){
 }
 
 
-// Theme toggle
+//Adding functionality to the Theme toggle switch
 var theme = ''
 var themeCounter = 1
 var currentTheme = ''
