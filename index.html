@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Calculator app</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body class="theme1">
+
+
+  <div data-themes = 3 class="calculator theme1">
+
+    <div class="header">
+      <h1>calc</h1>
+      <div class="themes">
+
+        <div class="button">
+          <h2>THEME</h2>
+          <p>123</p>
+          <div class="toggle"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="display">
+    </div>
+    <div class="secondary-display"></div>
+
+    <div class="keys">
+      <div data-value='7' class="key num" style="grid-area : key7 ;">7</div>
+      <div data-value='8' class="key num" style="grid-area : key8 ;">8</div>
+      <div data-value='9' class="key num" style="grid-area : key9 ;">9</div>
+      <div data-value='del' class="key del" style="grid-area : keydel ;">del</div>
+      <div data-value='4' class="key num" style="grid-area : key4 ;">4</div>
+      <div data-value='5' class="key num" style="grid-area : key5 ;">5</div>
+      <div data-value='6' class="key num" style="grid-area : key6 ;">6</div>
+      <div data-value='+' class="key num operator" style="grid-area : keyplus ;">+</div>
+      <div data-value='1' class="key num" style="grid-area : key1 ;">1</div>
+      <div data-value='2' class="key num" style="grid-area : key2 ;">2</div>
+      <div data-value='3' class="key num" style="grid-area : key3 ;">3</div>
+      <div data-value='-' class="key num operator" style="grid-area : keyminus ;">-</div>
+      <div data-value='.' class="key num dec" style="grid-area : keydec ;">.</div>
+      <div data-value='0' class="key num" style="grid-area : key0 ;">0</div>
+      <div data-value='/' class="key num operator" style="grid-area : keydiv ;">/</div>
+      <div data-value='✖' class="key num operator" style="grid-area : keymul ;">✖</div>
+      <div data-value='reset' class="key reset" style="grid-area : keyreset ;">RESET</div>
+      <div data-value='equal' class="key equal" style="grid-area : keyequal ;">=</div>
+    </div>
+    <audio src="sounds/mixkit-typewriter-hit-1362.wav" id = 'clickSound'></audio>
+    
+  </div>
+
+
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    <br>
+    Coded by <a href="https://krituraj-anand.vercel.app" target="_blank">Krituraj Anand</a>.
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,328 @@
+@import url('https://fonts.googleapis.com/css2?family=Spartan:wght@600&display=swap');
+
+
+.theme1{
+    --mainBg : hsl(222, 26%, 31%);
+    --toggleKeyboardBg : hsl(223, 31%, 20%);
+    --displayBg : hsl(224, 36%, 15%);
+
+    /* // Keys */
+
+    --darkKeyBg : hsl(225, 21%, 49%);
+    --darkKeyShadow : hsl(224, 28%, 35%);
+
+    --redKeyBg : hsl(6, 63%, 50%);
+    --redKeyShadow: hsl(6, 70%, 34%);
+
+    --lightKeyBg : hsl(30, 25%, 89%);
+    --lightKeyShadow : hsl(28, 16%, 65%);
+    
+    
+    /* // Text */
+
+    --darkText : hsl(221, 14%, 31%);
+    --lightText : hsl(0, 0%, 100%);
+}
+
+.theme2{
+    --mainBg : hsl(0, 0%, 90%);
+    --toggleKeyboardBg : hsl(0, 5%, 81%);
+    --displayBg : hsl(0, 0%, 93%);
+
+    /* // Keys */
+
+    --darkKeyBg : hsl(185, 42%, 37%);
+    --darkKeyShadow : hsl(185, 58%, 25%);
+
+    --redKeyBg : hsl(25, 98%, 40%);
+    --redKeyShadow: hsl(25, 99%, 27%);
+
+    --lightKeyBg : hsl(30, 25%, 89%);
+    --lightKeyShadow : hsl(28, 16%, 65%);
+    
+    
+    /* // Text */
+
+    --darkText : hsl(60, 10%, 19%);
+    --lightText : hsl(60, 10%, 19%);
+
+}
+
+
+
+.theme3{
+    --mainBg : hsl(268, 75%, 9%);
+    --toggleKeyboardBg : hsl(268, 71%, 12%);
+    --displayBg : hsl(268, 71%, 12%);
+
+    /* // Keys */
+
+    --darkKeyBg : hsl(281, 89%, 26%);
+    --darkKeyShadow : hsl(285, 91%, 52%);
+
+    --redKeyBg : hsl(176, 100%, 44%);
+    --redKeyShadow: hsl(177, 92%, 70%);
+
+    --lightKeyBg : hsl(268, 47%, 21%);
+    --lightKeyShadow : hsl(290, 70%, 36%);
+    
+    
+    /* // Text */
+
+    --darkText : hsl(52, 100%, 62%);
+    --lightText : hsl(52, 100%, 62%);
+
+}
+
+:root{
+    font-size: 25px;
+    font-family: 'Spartan', sans-serif;
+    --buttonHeight : 0.8rem
+}
+
+*, *::before, *::after{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    /* transition: all ease 1s; */
+
+}
+
+
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    background-color: var(--mainBg);
+    padding: 2rem 0;
+}
+
+.calculator{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    width: 80vw;
+    max-width: 500px;
+    position: relative;
+}
+
+    .calculator .header{
+        position: relative;
+        padding: 1rem;
+    }
+
+        .calculator .header h1{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            color: var(--lightText);
+        }
+
+        .calculator .header .themes{
+            position: absolute;
+            top: 80%;
+            right: 30px;
+            font-size: 0.3rem;
+            display: flex;
+            gap: 20px;
+        }
+
+            .calculator .header .themes .button{
+                width: 2.2rem;
+                height: var(--buttonHeight);
+                border-radius: 20px ;
+                background: var(--toggleKeyboardBg);
+                transform: translateY(-50%);
+                padding: 3px 3px;
+                cursor: pointer;
+                position: relative;
+            }
+    
+            .calculator .header .themes .button .toggle{
+                height: calc(0.75 * var(--buttonHeight)) ;
+                width:  calc(0.8 * var(--buttonHeight)) ;
+                border-radius: 50% ;
+                background: var(--redKeyShadow);
+                position: absolute;
+                z-index: 99;
+                top: 50%;
+                left: 5px;
+                transform: translateY(-50%);
+                transition: all ease 0.5s;
+            }
+
+            .calculator .header .themes .button h2{
+                color: var(--lightText);
+                position: absolute;
+                left: -1.8rem;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .calculator .header .themes .button p{
+                position: absolute;
+                top: -0.5rem;
+                letter-spacing: .6rem;
+                font-size: 0.4rem;
+                color: var(--lightText);
+            }
+
+    .calculator .display{
+        height: 3.5rem;
+        padding: 1rem;
+        border-radius: 10px;
+        background-color: var(--displayBg);
+        color: var(--lightText);
+        box-shadow: 2px 2px 5px var(--darkkeyShadow);
+        text-align: right;
+        letter-spacing: 4px;
+        font-size: 1.5rem;
+        font-family: 'Spartan';
+        font-weight: bold;
+        overflow: hidden;
+        /* overflow-x: scroll; */
+        user-select: none;
+    }
+
+    .calculator .secondary-display{
+        width: 100%;
+        padding: 0 0.7rem;
+        position: absolute;
+        bottom: 72%;
+        z-index: 10000;
+        text-align: right;
+        font-size: 0.5rem;
+        height: 1rem;
+        border-radius: 10px;
+        background-color: (var(--displayBg));
+        color: var(--darkKeyBg);
+    }
+
+    ::-webkit-scrollbar {
+        width: 0.1rem;
+      }
+      
+    /* Track */
+    ::-webkit-scrollbar-track {
+        box-shadow: inset grey;
+        background: var(--displayBg); 
+        border-radius: 0 0 10px 10px;
+        
+        
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+    background: var(--lightKeyBg); 
+    border-radius:10px;
+    
+    }
+    
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+    background: var(--darkKeyBg); 
+    }
+
+    .calculator .keys{
+        width: 100%;
+        display: grid;
+        padding: 1rem;
+        grid-template-areas: 
+            'key7 key8 key9 keydel'
+            'key4 key5 key6 keyplus'
+            'key1 key2 key3 keyminus'
+            'keydec key0 keydiv keymul'
+            'keyreset keyreset keyequal keyequal';
+        gap: 1rem;
+        background-color: var(--toggleKeyboardBg) ;
+        border-radius: 10px;
+        box-shadow: 3px 3px 5px var(--darkkeyShadow);
+    }
+
+        .calculator .keys .key{
+            text-align: center;
+            padding: .5rem 0;
+            border-radius: 10px;
+            background-color: var(--lightKeyBg);
+            color: var(--darkText);
+            text-shadow: 2px 2px 2px var(--darkkeyShadow);
+            box-shadow: 3px 3px 3px var(--lightKeyShadow);
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Spartan';
+            transition: transform linear 0.1s, background-color ease 1s;
+            user-select: none;
+        }
+
+            .calculator .keys .key:active{
+                transform: translate(2px, 2px);
+                box-shadow: 1px 1px 3px var(--lightKeyShadow);
+            }
+
+            .calculator .keys .key.equal{
+                background-color: var(--redKeyBg);
+                box-shadow: 3px 3px 3px var(--redKeyShadow);
+                color: var(--lightText);
+            }
+
+            .calculator.theme2 .keys .key.equal{
+                 color: white;
+            }
+            .calculator.theme3 .keys .key.equal{
+                color: black;
+            }
+
+                .calculator .keys .key.equal:active{
+                    transform: translate(2px, 2px);
+                    box-shadow: 1px 1px 3px var(--darkKeyShadow);
+                }
+
+            .calculator .keys .key:is(.reset, .del){
+                background-color: var(--darkKeyBg);
+                box-shadow: 3px 3px 3px var(--darkKeyShadow);
+                color: var(--lightText);
+            }
+
+            .calculator .keys .key:is(.reset, .del){
+                color: white;
+            }
+
+
+                .calculator .keys .key:is(.reset, .del):active{
+                    transform: translate(2px, 2px);
+                    box-shadow: 1px 1px 3px var(--darkKeyShadow);
+                }
+
+.attribution{
+    color: var(--lightKeyBg);
+    font-size: .5rem;
+    line-height: 4.5;
+}
+
+body.theme2 .attribution{
+    color: black;
+}
+
+.attribution a{
+    text-decoration: none;
+    color: var(--displayBg);
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--darkKeyBg);
+}
+
+ .attribution a:hover{
+     transform: scale(0.98);
+ }
+
+@media screen and (max-width:500px) {
+    :root{
+        font-size: unset;
+    }
+}
