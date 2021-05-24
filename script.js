@@ -25,8 +25,10 @@ keys.forEach( key => {key.addEventListener("click",()=>{
 
 // It the user has opened the website for the first time, ask for user's preferred theme
 if (localStorage.getItem('prefersTheme') === null){ 
+   
+    alert('Select preferred theme from the following three")
     var counter = 0
-
+          
     //Show the user, a preview of all the themes before prompting them for an input
     const themePreviews = setInterval(()=>{ 
         counter++
