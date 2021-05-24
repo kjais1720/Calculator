@@ -52,8 +52,9 @@ themeToggle.addEventListener("click", (event)=>{
     body.classList.add(theme)
 
     // Moving togggle button
-    var toggleShift = 5
-    toggleShift += (themeCounter-1)*20
+    var toggleShift = buttonWidth*0.01
+    toggleShift += (themeCounter-1)*(buttonWidth/3.2)
+    console.log("toggle : "+toggleShift)
     document.querySelector(".themes .button .toggle").style.left=toggleShift+'px' 
 })
 
