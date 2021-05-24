@@ -77,7 +77,8 @@
 :root{
     font-size: 25px;
     font-family: 'Spartan', sans-serif;
-    --buttonHeight : 0.8rem
+    --buttonHeight : 0.8rem;
+    --buttonWidth : 2.2rem;
 }
 
 *, *::before, *::after{
@@ -128,13 +129,10 @@ body{
             position: absolute;
             top: 80%;
             right: 30px;
-            font-size: 0.3rem;
-            display: flex;
-            gap: 20px;
         }
 
             .calculator .header .themes .button{
-                width: 2.2rem;
+                width: var(--buttonWidth);
                 height: var(--buttonHeight);
                 border-radius: 20px ;
                 background: var(--toggleKeyboardBg);
@@ -145,8 +143,8 @@ body{
             }
     
             .calculator .header .themes .button .toggle{
-                height: calc(0.75 * var(--buttonHeight)) ;
-                width:  calc(0.8 * var(--buttonHeight)) ;
+                height: calc(0.8 * var(--buttonHeight)) ;
+                width:  calc(0.3 * var(--buttonWidth)) ;
                 border-radius: 50% ;
                 background: var(--redKeyShadow);
                 position: absolute;
@@ -160,16 +158,17 @@ body{
             .calculator .header .themes .button h2{
                 color: var(--lightText);
                 position: absolute;
-                left: -1.8rem;
+                left: calc(-0.9*var(--buttonWidth));
                 top: 50%;
+                font-size: calc(0.6*var(--buttonHeight));
                 transform: translateY(-50%);
             }
 
             .calculator .header .themes .button p{
                 position: absolute;
                 top: -0.5rem;
-                letter-spacing: .6rem;
-                font-size: 0.4rem;
+                letter-spacing: calc(var(--buttonWidth)*0.3);
+                font-size: calc(0.4*var(--buttonHeight));
                 color: var(--lightText);
             }
 
@@ -324,5 +323,12 @@ body.theme2 .attribution{
 @media screen and (max-width:500px) {
     :root{
         font-size: unset;
+        --buttonHeight : 1rem;
+        --buttonWidth : 3.8rem;
+    }  
+
+    .calculator .header .themes .button h2{
+        left: calc(-0.7*var(--buttonWidth));
     }
+
 }
