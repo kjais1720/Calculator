@@ -141,6 +141,7 @@ body{
                 padding: 3px 3px;
                 cursor: pointer;
                 position: relative;
+                user-select : none;
             }
     
             .calculator .header .themes .button .toggle{
