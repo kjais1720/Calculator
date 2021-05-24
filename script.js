@@ -24,22 +24,25 @@ keys.forEach( key => {key.addEventListener("click",()=>{
 //Setting user's preferred theme. If the user opens the website again in future, the preferred theme will be automatically applied. 
 
 // It the user has opened the website for the first time, ask for user's preferred theme
-if (localStorage.getItem('prefersTheme') === null){ 
-   
-    alert('Select preferred theme from the following three")
-    var counter = 0
-          
-    //Show the user, a preview of all the themes before prompting them for an input
-    const themePreviews = setInterval(()=>{ 
-        counter++
-        if(counter === 4){
-            counter = 3
-            stopInterval(themePreviews)
-        } else {
-            changeTheme(counter)
-        }
-    },3000)
+function preferred(){
+    if (localStorage.getItem('prefersTheme') === null){ 
+        alert("Select preferred theme from the following three")
+        var counter = 1
+
+        //Show the user, a preview of all the themes before prompting them for an input
+        const themePreviews = setInterval(()=>{ 
+            if(counter === 4){
+                counter = 3
+                stopInterval(themePreviews)
+            } else {
+                console.log('counter'+counter)
+                changeTheme(counter)
+            }
+            counter++
+        },3000)
+    }
 }
+    
 
 
 // If the user wants to change their preferred theme  
@@ -64,7 +67,7 @@ document.addEventListener('keydown',(event)=>{
 
 // Storing user's preferred theme in a variable on the local storage of the browser.
 function setPreferredTheme(){
-    var preferredTheme = prompt("Enter your preferred theme, to reset your preferred theme, press 'shift'.")
+    var preferredTheme = prompt("Enter your preferred theme. To reset your preferred theme, press 'shift'.")
     while(!['1','2','3'].includes(preferredTheme)){
             alert('Invalid choice, choose only between 1 to 3')
             preferredTheme = prompt('Enter your preferred theme')
